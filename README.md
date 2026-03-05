@@ -2,9 +2,9 @@
 
 #### SimS (Simpe Summarizer) is an application for local (without using online neural networks) video summarization
 
-## This is a test version of the app (with bugs!), and I'm not sure if it will be developed further! It's just a personal project I created out of boredom
-
 <img src=".assets/demo.png">
+
+## This is a test version of the app (with bugs!), and I'm not sure if it will be developed further! It's just a personal project I created out of boredom
 
 ## Installation (on linux, a guide for Windows (maybe) will be available later)
 
