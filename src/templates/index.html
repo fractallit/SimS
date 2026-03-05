@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>SimS</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="SimS logo">
+        <span id="logo_text">
+            <span id="logo_text1">Sim</span>ple
+            <br>
+            <span id="logo_text2">S</span>ummarizer
+        </span>
+
+        <a href="https://codeberg.org/fractallit/SimS" id="logo_codeberg_link" target="_blank">Codeberg</a>
+    </div>
+
+    <div id="menu">
+        <form id="summary_form" action="/summarize" method="post" enctype="multipart/form-data">
+            <input type="radio" id="link_tab" name="content_source_tab" class="tab_radio" value="link" checked>
+            <input type="radio" id="file_tab" name="content_source_tab" class="tab_radio" value="file">
+            <label for="link_tab" id="link_tab_label">Link</label><label for="file_tab" id="file_tab_label">File</label>
+
+            <div id="after_tabs">
+                <div id="content_source">
+                    <div id="link" class="set_content">
+                        <input type="text" id="link_input" name="link_input" placeholder="https://...">
+                    </div>
+
+                    <div id="file" class="set_content">
+                        <input type="file" id="file_input" name="file_input">
+                    </div>
+                </div>
+
+                <textarea id="prompt" name="prompt" placeholder="Your prompt:...">{{ default_prompt }}</textarea>
+
+                <div id="models_select_container">
+                    <div id="select_llm_model_container">
+                        <span>LLM Model</span>
+                        <br>
+                        <select name="select_llm_model" id="select_llm_model">
+                        </select>
+                    </div>
+                    <div id="select_stt_model_container">
+                        <span>STT Model</span>
+                        <br>
+                        <select name="select_stt_model" id="select_stt_model">
+                            <option value="tiny">Tiny</option>
+                            <option value="base" selected>Base</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="turbo">Turbo</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" value="Summarize" id="submit_button">
+
+                <div id="result_container">
+                    <span>Result:</span>
+                    <br>
+                    <br>
+                    <span id="result">Summary of your cool video...</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/get_models.js') }}"></script>
+    <script>getModels()</script>
+
+    <script src="{{ url_for('static', filename='scripts/summary.js') }}"></script>
+</body>
+</html>

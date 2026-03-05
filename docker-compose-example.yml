@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  sims-run:
+    image: fractallit/sims:latest
+    container_name: sims-run
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8123:5000"
+    environment:
+      - OLLAMA_SERVER_URL=http://host.docker.internal:11434

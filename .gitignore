@@ -1,0 +1,6 @@
+.git
+
+src/tmp
+src/__pycache__
+
+docker-compose.yml
