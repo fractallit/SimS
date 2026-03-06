@@ -1,5 +1,8 @@
-flask
-gunicorn
-requests
-openai-whisper
-yt-dlp
+Flask==3.1.3
+gunicorn==25.1.0
+requests==2.32.5
+faster-whisper==1.2.1
+torch==2.10.0
+yt-dlp==2026.3.3
+nvidia-cublas-cu12==12.8.4.1
+nvidia-cudnn-cu12==9.10.2.21

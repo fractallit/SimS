@@ -1,6 +1,6 @@
 from werkzeug.datastructures.file_storage import FileStorage
 import requests as req
-import whisper
+import faster_whisper
 import yt_dlp
 from datetime import datetime
 
@@ -26,10 +26,12 @@ def get_summarize(prompt: str, transcribe: str, model: str, OLLAMA_URL: str) -> 
 
 
 def transcribe_video(path: str, stt_model: str) -> str:
-    model = whisper.load_model(stt_model)
-    result = model.transcribe(path, fp16=False)
+    model = faster_whisper.WhisperModel(stt_model)
+    segments, info = model.transcribe(path, beam_size=5)
 
-    return str(result.get("text"))
+    result = "\n".join([segment.text for segment in segments])
+
+    return result
 
 
 def work_with_data(is_data_from_link: bool, data: str | FileStorage, prompt: str, llm_model: str, stt_model: str, OLLAMA_URL: str) -> str:
